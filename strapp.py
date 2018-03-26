@@ -7,6 +7,8 @@ from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.keys import Keys
 import threading
 from datetime import datetime
+from pyvirtualdisplay import Display
+
 import datetime
 import random
 now = datetime.datetime.now()
@@ -27,12 +29,14 @@ if sd<=rd:
                         for rr in fils:
                               data.append(rr)
                     prs=random.choice(data)
+                    display = Display(visible=0, size=(800, 800))  
+                    display.start()
                     options = webdriver.ChromeOptions()
                     options.add_argument("--headless")
                     options.add_argument("--proxy-server=socks5://"+str(prs))
                     options.add_argument('--no-sandbox')
                     driver = webdriver.Chrome(chrome_options=options)
-                    driver.get("https://www.quora.com/search?q="+str(row)
+                    driver.get("https://www.quora.com/search?q="+str(row))
                     
                     print prs
                     for x in range(0,8):
@@ -58,6 +62,7 @@ if sd<=rd:
                             file.writelines("Questions:  "+rk+"?"+ '\n')
                             file.writelines("------"+'\n')
                     driver.close()
+                    display.stop()           
                     print " All questions of : " +str(row)+"   Successfully Done"
 
 
