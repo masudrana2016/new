@@ -27,13 +27,12 @@ if sd<=rd:
                         for rr in fils:
                               data.append(rr)
                     prs=random.choice(data)
-                    service_args = [
-                    '--proxy='+str(prs),
-                    '--proxy-type=socks5',
-                    '--ignore-ssl-errors=true'
-                    ]
-                    
-                    driver = webdriver.PhantomJS(service_args=service_args)
+                    options = webdriver.ChromeOptions()
+                    options.add_argument("--headless")
+                    options.add_argument("--proxy-server=socks5://"+str(prs));
+                    options.add_argument('--no-sandbox')
+                    driver = webdriver.Chrome(chrome_options=options)
+                    driver.get("https://www.quora.com/search?q="+str(row)
                     driver.get("https://www.quora.com/search?q="+str(row))
                     print prs
                     for x in range(0,8):
