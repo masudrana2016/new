@@ -30,7 +30,9 @@ if sd<=rd:
                     service_args = [
                     '--proxy='+str(prs),
                     '--proxy-type=socks5',
+                    '--ignore-ssl-errors=true'
                     ]
+                    
                     driver = webdriver.PhantomJS(service_args=service_args)
                     driver.get("https://www.quora.com/search?q="+str(row))
                     print prs
