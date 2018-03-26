@@ -29,7 +29,7 @@ if sd<=rd:
                     prs=random.choice(data)
                     options = webdriver.ChromeOptions()
                     options.add_argument("--headless")
-                    options.add_argument("--proxy-server=socks5://"+str(prs));
+                    options.add_argument("--proxy-server=socks5://"+str(prs))
                     options.add_argument('--no-sandbox')
                     driver = webdriver.Chrome(chrome_options=options)
                     driver.get("https://www.quora.com/search?q="+str(row)
