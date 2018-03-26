@@ -33,7 +33,7 @@ if sd<=rd:
                     options.add_argument('--no-sandbox')
                     driver = webdriver.Chrome(chrome_options=options)
                     driver.get("https://www.quora.com/search?q="+str(row)
-                    driver.get("https://www.quora.com/search?q="+str(row))
+                    
                     print prs
                     for x in range(0,8):
                         time.sleep(1)
