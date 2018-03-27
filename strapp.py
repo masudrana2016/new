@@ -48,8 +48,8 @@ if sd<=rd:
                         for raw in links:
                             rk=raw.replace("-"," ").replace("/","")
                             rd="https://www.quora.com"+raw
-                            file.writelines("url:  "+str(rd) +'\n')
-                            file.writelines("Questions:  "+str(rk)+"?"+ '\n')
+                            file.writelines("url:  "+str(rd).decode()+'\n')
+                            file.writelines("Questions:  "+str(rk).decode()+"?"+ '\n')
                             file.writelines("------"+'\n')
                    
                                
