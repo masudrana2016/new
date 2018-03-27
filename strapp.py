@@ -13,7 +13,7 @@ import datetime
 import random
 now = datetime.datetime.now()
 sd=now.day
-print sd
+#print (sd)
 rd=31
 if sd<=rd:
         sk="proxy.txt"
@@ -23,7 +23,7 @@ if sd<=rd:
         else:
             with open(fky, 'r+') as fkky:
                 for row in fkky:
-                    print " Start Extracting All questions of : " +str(row) 
+                    print (" Start Extracting All questions of : " +str(row) )
                     data=[]
                     with open (sk, 'r+') as fils:
                         for rr in fils:
@@ -38,7 +38,7 @@ if sd<=rd:
                     driver = webdriver.Chrome(chrome_options=options)
                     driver.get("https://www.quora.com/search?q="+str(row))
                     
-                    print prs
+                    print (prs)
                     for x in range(0,8):
                         time.sleep(1)
                         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
@@ -52,7 +52,7 @@ if sd<=rd:
                             links.append(a['href'])
                          except KeyError:
                             pass                   
-                    print "succesfully done all url"
+                    print( "succesfully done all url")
                     par = "output.txt"
                     with open(par, 'a+') as file :
                         for raw in links:
@@ -63,12 +63,12 @@ if sd<=rd:
                             file.writelines("------"+'\n')
                     driver.close()
                     display.stop()           
-                    print " All questions of : " +str(row)+"   Successfully Done"
+                    print (" All questions of : " +str(row)+"   Successfully Done")
 
 
 
 else:
-        print "someThing error"
+        print ("someThing error")
 
 
             
