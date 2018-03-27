@@ -19,7 +19,7 @@ if sd<=rd:
         sk="proxy.txt"
         fky="keyword.txt"
         if len(sk)<=2 and len(fky)<=2:
-                print "please set path proxy "
+                print ("please set path proxy ")
         else:
             with open(fky, 'r+') as fkky:
                 for row in fkky:
@@ -29,15 +29,11 @@ if sd<=rd:
                         for rr in fils:
                               data.append(rr)
                     prs=random.choice(data)
-                    display = Display(visible=0, size=(800, 800))  
-                    display.start()
-                    options = webdriver.ChromeOptions()
-                    options.add_argument("--headless")
-                    options.add_argument("--proxy-server=socks5://"+str(prs))
-                    options.add_argument('--no-sandbox')
-                    driver = webdriver.Chrome(chrome_options=options)
+                   
+                    driver = webdriver.PhantomJS()
                     driver.get("https://www.quora.com/search?q="+str(row))
-                    
+                    time.sleep(3)
+                    print(driver.title)
                     print (prs)
                     for x in range(0,8):
                         time.sleep(1)
@@ -52,7 +48,7 @@ if sd<=rd:
                             links.append(a['href'])
                          except KeyError:
                             pass                   
-                    print( "succesfully done all url")
+                    print (links)
                     par = "output.txt"
                     with open(par, 'a+') as file :
                         for raw in links:
@@ -62,7 +58,7 @@ if sd<=rd:
                             file.writelines("Questions:  "+rk+"?"+ '\n')
                             file.writelines("------"+'\n')
                     driver.close()
-                    display.stop()           
+                               
                     print (" All questions of : " +str(row)+"   Successfully Done")
 
 
