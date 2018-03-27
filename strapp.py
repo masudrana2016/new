@@ -1,14 +1,8 @@
+import requests
 from bs4 import BeautifulSoup
 import os, io, sys, time, re, csv
-from selenium import webdriver 
-from selenium.webdriver.support.ui import WebDriverWait 
-from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.support.select import Select
-from selenium.webdriver.common.keys import Keys
 import threading
 from datetime import datetime
-from pyvirtualdisplay import Display
-
 import datetime
 import random
 now = datetime.datetime.now()
@@ -19,26 +13,26 @@ if sd<=rd:
         sk="proxy.txt"
         fky="keyword.txt"
         if len(sk)<=2 and len(fky)<=2:
-                print ("please set path proxy ")
+                print "please set path proxy "
         else:
             with open(fky, 'r+') as fkky:
                 for row in fkky:
-                    print (" Start Extracting All questions of : " +str(row) )
+                    print " Start Extracting All questions of : " +str(row) 
                     data=[]
                     with open (sk, 'r+') as fils:
                         for rr in fils:
                               data.append(rr)
                     prs=random.choice(data)
                    
-                    driver = webdriver.PhantomJS()
-                    driver.get("https://www.quora.com/search?q="+str(row))
+                    url = "https://www.quora.com/search?q="+str(row)
+                    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
+                    response = requests.get(url, headers=headers)
+                    data=response.content
                     time.sleep(3)
-                    print(driver.title)
-                    print (prs)
-                    for x in range(0,8):
-                        time.sleep(1)
-                        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-                    data = driver.page_source
+                    
+                    print prs
+                    
                     shoup=BeautifulSoup(data, "lxml")
 
                     rsk=shoup.findAll('a', attrs={'class': 'question_link'})
@@ -57,15 +51,11 @@ if sd<=rd:
                             file.writelines("url:  "+rd +'\n')
                             file.writelines("Questions:  "+rk+"?"+ '\n')
                             file.writelines("------"+'\n')
-                    driver.close()
+                   
                                
-                    print (" All questions of : " +str(row)+"   Successfully Done")
+                    print " All questions of : " +str(row)+"   Successfully Done"
 
 
 
 else:
-        print ("someThing error")
-
-
-            
-
+        print "someThing error"
