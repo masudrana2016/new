@@ -33,7 +33,7 @@ if sd<=rd:
                     
                     print prs
                     
-                    shoup=BeautifulSoup(data, "lxml")
+                    shoup=BeautifulSoup(data)
 
                     rsk=shoup.findAll('a', attrs={'class': 'question_link'})
                     links=[]
@@ -48,8 +48,8 @@ if sd<=rd:
                         for raw in links:
                             rk=raw.replace("-"," ").replace("/","")
                             rd="https://www.quora.com"+raw
-                            file.writelines("url:  "+rd +'\n')
-                            file.writelines("Questions:  "+rk+"?"+ '\n')
+                            file.writelines("url:  "+str(rd) +'\n')
+                            file.writelines("Questions:  "+str(rk)+"?"+ '\n')
                             file.writelines("------"+'\n')
                    
                                
