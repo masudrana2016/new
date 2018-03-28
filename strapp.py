@@ -37,7 +37,7 @@ if sd<=rd:
                     
                     print (prs)
                     
-                    shoup=BeautifulSoup(data)
+                    shoup=BeautifulSoup(data, "lxml")
 
                     rsk=shoup.findAll('a', attrs={'class': 'question_link'})
                     links=[]
@@ -46,13 +46,13 @@ if sd<=rd:
                             links.append(a['href'])
                          except KeyError:
                             pass                   
-                    print (links)
+                    print (str(links).encode("utf-8"))
                     par = "output.txt"
                     with open(par, 'a+', encoding='utf-8') as file :
                         for raw in links:
                             rk=raw.replace("-"," ").replace("/","")
-                            rd="https://www.quora.com"+raw
-                            file.writelines("url:  "+str(rd) +'\n')
+                            rd=str("https://www.quora.com"+raw)
+                            file.writelines("url:  "+rd+'\n')
                             file.writelines("Questions:  "+str(rk)+"?"+ '\n')
                             file.writelines("------"+'\n')
                    
