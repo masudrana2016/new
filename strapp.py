@@ -37,7 +37,7 @@ if sd<=rd:
                     
                     print (prs)
                     
-                    shoup=BeautifulSoup(data, "lxml")
+                    shoup=BeautifulSoup(data)
 
                     rsk=shoup.findAll('a', attrs={'class': 'question_link'})
                     links=[]
